@@ -11,6 +11,7 @@ We have designed Domporlor to comply with all passive sources licenses, and usag
 # Resources
 - [Features](#features)
 - [Usage](#usage)
+- [Installation](#Installation)
 
  # Features
 
@@ -35,3 +36,12 @@ This will display help for the tool. Here are all the switches it supports.
 | -t   | Number of concurrent goroutines for resolving (default 25) | python3 Domporlor.py -t 50 |
 | -r   | Show Resolvers | python3 Domporlor.py -rr |
 | -s   | Unverify SSL Certification | python3 Domporlor.py -ss |
+
+ # Installation
+
+### From Github
+
+```sh
+git clone https://github.com/Aporlorxl23/Domporlor.git
+python3 Domporlor.py -d hackerone.com -t 50 -rr
+```
