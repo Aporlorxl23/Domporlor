@@ -5,6 +5,7 @@ from datetime import datetime
 Parser = argparse.ArgumentParser(description="Aporlorxl23 Subdomain Scanner Tool")
 Parser.add_argument("-d","--domain",dest="Domain",required=True,type=str,help="Domain to find subdomains for")
 Parser.add_argument("-r","--resolvers",dest="Resolvers",required=False,type=bool,help="Show Resolvers")
+Parser.add_argument("-c","--nocolor",dest="Color",default=False,required=False,type=bool,help="No Color")
 Parser.add_argument("-t","--thread",dest="ThreadCount",default=25,type=int,help="Number of concurrent for resolving (default 25)")
 Parser.add_argument("-s","--ssl",dest="SSL",default=True,type=bool,help="Unverify SSL Certification")
 Args = Parser.parse_args()
@@ -12,6 +13,7 @@ Args = Parser.parse_args()
 Domain = Args.Domain
 ThreadCount = Args.ThreadCount
 SSL = Args.SSL
+NoColor = Args.Color
 Resolvers = Args.Resolvers
 AllSubs = []
 AllIp = []
@@ -25,18 +27,30 @@ YELLOW='\033[1;33m'
 Header = {"User-Agent":"Aporlorxl23/Domporlor.py"}
 
 def Help():
-    print(f"{GREEN}[+] Usage{NC}: {BLUE}python3 Domporlor.py{NC} {GREEN}-d{NC} {YELLOW}example.com{NC} {GREEN}-t{NC} {YELLOW}50{NC}")
+    if NoColor:
+        print(f"[+] Usage: python3 Domporlor.py -d example.com -t 50")
+    else:
+        print(f"{GREEN}[+] Usage{NC}: {BLUE}python3 Domporlor.py{NC} {GREEN}-d{NC} {YELLOW}example.com{NC} {GREEN}-t{NC} {YELLOW}50{NC}")
     exit(0)
 def Started():
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    print(f"{GREEN}[+]{NC} {BLUE}Aporlorxl23/Domporlor.py{NC} {GREEN}Started At{NC} {YELLOW}"+current_time+f"{NC}")
+    if NoColor:
+        print(f"[+] Aporlorxl23/Domporlor.py Started At "+current_time+"")
+    else:
+        print(f"{GREEN}[+]{NC} {BLUE}Aporlorxl23/Domporlor.py{NC} {GREEN}Started At{NC} {YELLOW}"+current_time+f"{NC}")
 def Stoped():
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    print(f"{GREEN}[?]{NC} {BLUE}Aporlorxl23/Domporlor.py{NC} {GREEN}Stoped At{NC} {YELLOW}"+current_time+f"{NC}")
+    if NoColor:
+        print(f"[?] Aporlorxl23/Domporlor.py Stoped At "+current_time+"")
+    else:
+        print(f"{GREEN}[?]{NC} {BLUE}Aporlorxl23/Domporlor.py{NC} {GREEN}Stoped At{NC} {YELLOW}"+current_time+f"{NC}")
 def Debug(Text):
-    print(f"{GREEN}[+]{NC} {YELLOW}{Text}{NC} {BLUE}Started{NC} {GREEN}!{NC}")
+    if NoColor:
+        print(f"[+] {Text} Started !")
+    else:
+        print(f"{GREEN}[+]{NC} {YELLOW}{Text}{NC} {BLUE}Started{NC} {GREEN}!{NC}")
 def GetApiKey():
     global VirusTotalKey
     try:
@@ -179,7 +193,10 @@ def Hackertarget():
         print("Connection Error",e)
         Help()
 def Error(Text):
-    print(f"{RED}[-]{NC} {Text} {GREEN}!{NC}")
+    if NoColor:
+        print(f"[-] {Text} !")
+    else:
+        print(f"{RED}[-]{NC} {Text} {GREEN}!{NC}")
 def Main():
     Started()
     GetApiKey()
@@ -192,12 +209,18 @@ def Main():
     NewAllSubs = set(AllSubs)
     SortAllSubs = list(NewAllSubs)
     for Subs in SortAllSubs:
-        print(f"{GREEN}  => {NC}{Subs}")
+        if NoColor:
+            print(f"  => {Subs}")
+        else:
+            print(f"{GREEN}  => {NC}{Subs}")
     if Resolvers:
         NewAllIp = set(AllIp)
         SortAllIp = list(NewAllIp)
         for Ip in SortAllIp:
-            print(f"{GREEN}  => {NC}{Ip}")
+            if NoColor:
+                print(f"  => {Ip}")
+            else:
+                print(f"{GREEN}  => {NC}{Ip}")
     Stoped()
 if __name__ == '__main__':
     Pool = ThreadPoolExecutor(ThreadCount)
