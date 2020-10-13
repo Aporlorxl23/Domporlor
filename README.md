@@ -45,6 +45,9 @@ This will display help for the tool. Here are all the switches it supports.
 ```sh
 python3 Domporlor.py -d hackerone.com -t 50 -cc | grep hackerone | cut -d " " -f 4 | httpx -silent -title -status-code -content-length
 ```
+<br>
+<img src="Images/3.png" alt="Domporlor" width="170px"></a>
+<br>
 
  # Installation
 
