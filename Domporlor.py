@@ -1,5 +1,5 @@
 import requests, argparse, json
-import concurrent.futures 
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 
 Parser = argparse.ArgumentParser(description="Aporlorxl23 Subdomain Scanner Tool")
@@ -158,6 +158,26 @@ def Bufferover():
     except:
         Error("Connection Error")
         Help()
+def Hackertarget():
+    Debug("Hackertarget")
+    try:
+        Url = "http://api.hackertarget.com/hostsearch/?q="+Domain
+        R = requests.get(Url,headers=Header,verify=SSL)
+        Data = []
+        Ram = ""
+        for i in R.text:
+            if str(i) != ",":
+                Ram += str(i)
+            else:
+                Data.append(Ram)
+                Ram = ""
+        NewData = set(Data)
+        SortData = list(NewData)
+        for i in SortData:
+            AllSubs.append(i)
+    except Exception as e:
+        print("Connection Error",e)
+        Help()
 def Error(Text):
     print(f"{RED}[-]{NC} {Text} {GREEN}!{NC}")
 def Main():
@@ -168,6 +188,7 @@ def Main():
     Sublist3r()
     Alienvault()
     Bufferover()
+    #Hackertarget()
     NewAllSubs = set(AllSubs)
     SortAllSubs = list(NewAllSubs)
     for Subs in SortAllSubs:
@@ -179,4 +200,5 @@ def Main():
             print(f"{GREEN}  => {NC}{Ip}")
     Stoped()
 if __name__ == '__main__':
-    Main()
+    Pool = ThreadPoolExecutor(ThreadCount)
+    Futures = Pool.submit(Main())
