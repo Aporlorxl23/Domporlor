@@ -3,10 +3,10 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 
 Parser = argparse.ArgumentParser(description="Aporlorxl23 Subdomain Scanner Tool")
-Parser.add_argument("-d","--domain",dest="Domain",required=True,type=str,help="Please Enter Domain For Subdomain Scan")
-Parser.add_argument("-r","--resolvers",dest="Resolvers",required=False,type=bool,help="Subdomain Resolvers Scan")
-Parser.add_argument("-t","--thread",dest="ThreadCount",default=25,type=int,help="Please Enter Thread Count")
-Parser.add_argument("-s","--ssl",dest="SSL",default=True,type=bool,help="SSL Verification")
+Parser.add_argument("-d","--domain",dest="Domain",required=True,type=str,help="Domain to find subdomains for")
+Parser.add_argument("-r","--resolvers",dest="Resolvers",required=False,type=bool,help="Show Resolvers")
+Parser.add_argument("-t","--thread",dest="ThreadCount",default=25,type=int,help="Number of concurrent for resolving (default 25)")
+Parser.add_argument("-s","--ssl",dest="SSL",default=True,type=bool,help="Unverify SSL Certification")
 Args = Parser.parse_args()
 
 Domain = Args.Domain
