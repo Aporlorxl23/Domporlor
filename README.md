@@ -9,8 +9,9 @@ We have designed Domporlor to comply with all passive sources licenses, and usag
 
 
 # Resources
-- [Features](#features)
-- [Usage](#usage)
+- [Features](#Features)
+- [Usage](#Usage)
+- [Advanced Usage](#Advanced)
 - [Installation](#Installation)
 
  # Features
@@ -35,7 +36,15 @@ This will display help for the tool. Here are all the switches it supports.
 | -d   | Domain to find subdomains for | python3 Domporlor.py -d hackerone.com |
 | -t   | Number of concurrent for resolving (default 25) | python3 Domporlor.py -t 50 |
 | -r   | Show Resolvers | python3 Domporlor.py -rr |
+| -c   | No Color | python3 Domporlor.py -c |
 | -s   | Unverify SSL Certification | python3 Domporlor.py -ss |
+
+
+# Advanced
+
+```sh
+python3 Domporlor.py -d hackerone.com -t 50 -cc | grep hackerone | cut -d " " -f 4 | httpx -silent -title -status-code -content-length
+```
 
  # Installation
 
