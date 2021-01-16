@@ -36,7 +36,7 @@ This will display help for the tool. Here are all the switches it supports.
 | -d   | Domain to find subdomains for | python3 Domporlor.py -d hackerone.com |
 | -t   | Number of concurrent for resolving (default 25) | python3 Domporlor.py -t 50 |
 | -r   | Show Resolvers | python3 Domporlor.py -rr |
-| -c   | No Color | python3 Domporlor.py -c |
+| -c   | No Color | python3 Domporlor.py -cc |
 | -s   | Unverify SSL Certification | python3 Domporlor.py -ss |
 
 
