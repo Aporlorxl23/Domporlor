@@ -43,7 +43,10 @@ This will display help for the tool. Here are all the switches it supports.
 # Advanced
 
 ```sh
-python3 Domporlor.py -d hackerone.com -t 50 -cc | grep hackerone | cut -d " " -f 4 | httpx -silent -title -status-code -content-length
+python3 Domporlor.py -d hackerone.com -t 50 -cc | grep hackerone | cut -d " " -f 4 > hackerone.txt
+
+git clone https://github.com/Aporlorxl23/HTTP-Probe.git && cd HTTP-Probe
+python3 Prober.py -d PATH/hackerone.txt -c 100 | tee hackerone_probe.txt
 ```
 <br>
 <img src="Images/3.png" alt="Domporlor" width="1000px"></a>
